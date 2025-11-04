@@ -6,40 +6,39 @@
 /*   By: gpatrici <gpatrici@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 18:59:18 by gpatrici          #+#    #+#             */
-/*   Updated: 2025/11/04 19:31:29 by gpatrici         ###   ########.fr       */
+/*   Updated: 2025/11/04 22:58:41 by gpatrici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib.h"
-
-static int	putstr(char *str)
-{
-	int	i;
-
-	if (!str)
-		return (putstr("(null)"));
-	i = 0;
-	while (str[i])
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
-	return (i);
-}
+#include "ft_printf.h"
 
 static int	scan_c(char **fmt_i, va_list *ap)
 {
-	if (**fmt_i == '%' && *(*fmt_i + 1) == 's')
+	int	counter;
+
+	counter = 0;
+	if (**fmt_i == '%')
 	{
+		if (*(*fmt_i + 1) == 's')
+			counter += ft_putstr(va_arg(*ap, char *));
+		else if (*(*fmt_i + 1) == 'c')
+			counter += ft_putchar((char)va_arg(*ap, int));
+		else if (*(*fmt_i + 1) == 'p')
+			counter += ft_putptr(va_arg(*ap, void *));
+		else if (*(*fmt_i + 1) == 'd' || *(*fmt_i + 1) == 'i')
+			counter += ft_putnbr_long(va_arg(*ap, int));
+		else if (*(*fmt_i + 1) == 'u')
+			counter += ft_put_unbr(va_arg(*ap, unsigned int));
+		else if (*(*fmt_i + 1) == 'x')
+			counter += ft_put_hex_lowercase(va_arg(*ap, unsigned int));
+		else if (*(*fmt_i + 1) == 'X')
+			counter += ft_put_hex_uppercase(va_arg(*ap, unsigned int));
+		else if (*(*fmt_i + 1) == '%')
+			counter += ft_putchar('%');
 		*fmt_i += 2;
-		return (putstr(va_arg(*ap, char *)));
+		return (counter);
 	}
-	else
-	{
-		write(1, *fmt_i, 1);
-		*fmt_i += 1;
-		return (1);
-	}
+	return (write(1, (*fmt_i)++, 1));
 }
 
 int	ft_printf(const char *fmt, ...)
@@ -47,6 +46,8 @@ int	ft_printf(const char *fmt, ...)
 	va_list	ap;
 	int		printed;
 
+	if (!fmt)
+		return (0);
 	va_start(ap, fmt);
 	printed = 0;
 	while (*fmt)
