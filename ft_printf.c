@@ -6,13 +6,13 @@
 /*   By: gpatrici <gpatrici@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 18:59:18 by gpatrici          #+#    #+#             */
-/*   Updated: 2025/11/04 19:17:55 by gpatrici         ###   ########.fr       */
+/*   Updated: 2025/11/04 19:31:29 by gpatrici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib.h"
 
-int	putstr(char *str)
+static int	putstr(char *str)
 {
 	int	i;
 
@@ -27,7 +27,7 @@ int	putstr(char *str)
 	return (i);
 }
 
-int	scan_c(char **fmt_i, va_list *ap)
+static int	scan_c(char **fmt_i, va_list *ap)
 {
 	if (**fmt_i == '%' && *(*fmt_i + 1) == 's')
 	{

@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lib.h                                              :+:      :+:    :+:   */
+/*   test_main.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpatrici <gpatrici@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/04 18:57:27 by gpatrici          #+#    #+#             */
-/*   Updated: 2025/11/04 19:22:34 by gpatrici         ###   ########.fr       */
+/*   Created: 2025/11/04 19:22:05 by gpatrici          #+#    #+#             */
+/*   Updated: 2025/11/04 19:31:12 by gpatrici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIB_H
+#include "lib.h"
 
-# define LIB_H
+int	main(void)
+{
+#include <stdio.h>
 
-# include <stdarg.h>
-# include <stdlib.h>
-# include <unistd.h>
-
-int	ft_printf(const char *fmt, ...);
-
-#endif
+	printf("\n%d characters used for %%s.\n",
+		ft_printf("1:%s\n2:%s\n3:%s\n4:%s\n", "wsp", "is it joever\0",
+			"trump will murder all mexicans", NULL));
+	return (0);
+}
