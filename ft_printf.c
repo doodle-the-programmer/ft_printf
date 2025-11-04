@@ -6,7 +6,7 @@
 /*   By: gpatrici <gpatrici@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 18:59:18 by gpatrici          #+#    #+#             */
-/*   Updated: 2025/11/04 22:58:41 by gpatrici         ###   ########.fr       */
+/*   Updated: 2025/11/04 23:11:21 by gpatrici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	scan_c(char **fmt_i, va_list *ap)
 	int	counter;
 
 	counter = 0;
-	if (**fmt_i == '%')
+	if (**fmt_i == '%' && *(*fmt_i + 1))
 	{
 		if (*(*fmt_i + 1) == 's')
 			counter += ft_putstr(va_arg(*ap, char *));
