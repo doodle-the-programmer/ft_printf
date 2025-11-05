@@ -6,7 +6,7 @@
 /*   By: gpatrici <gpatrici@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 19:59:08 by gpatrici          #+#    #+#             */
-/*   Updated: 2025/11/04 22:51:28 by gpatrici         ###   ########.fr       */
+/*   Updated: 2025/11/05 20:18:05 by gpatrici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,6 @@ int	ft_put_unbr(unsigned long n)
 	return (count);
 }
 
-/*
-Avoid overflow when nbr == LONG_MIN by using the trick:
-convert -(nbr + 1) (which is within range), then add 1 as unsigned.
-*/
 int	ft_putnbr_long(long nbr)
 {
 	int				count;
